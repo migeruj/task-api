@@ -2,11 +2,11 @@ rocket-sqlite
 
 # Database configuration
 
-- # Install Diesel
-    1. For Ubuntu/Debian Install libmysqlclient-dev package, for windows install mysql-client binaries. Execute ```apt install libmysqlclient-dev ```
-    2. Config ```DATABASE_URL``` environment variable with your mysql URI database location
+# Install Diesel
 
-    3. Execute ```cargo install diesel_cli --no-default-features --features mysql```
+1. For Ubuntu/Debian Install libmysqlclient-dev package, for windows install mysql-client binaries. Execute ```apt install libmysqlclient-dev ```
+2. Config ```DATABASE_URL``` environment variable with your mysql URI database location
+3. Execute ```cargo install diesel_cli --no-default-features --features mysql```
 
 
 # Run
