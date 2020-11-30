@@ -24,13 +24,28 @@ fn create_task(data: Json<ETask>, connection: db::Connection) -> Json<bool> {
 
 #[get("/")]
 fn get_tasks(connection: db::Connection) -> Json<Vec<Task>> {
-    Json(Task::select_all(&connection))
+    Json(Task::all_task(&connection))
+}
+
+#[get("/<id>")]
+fn get_tasks_by_id(id: i32, connection: db::Connection) -> Json<Vec<Task>> {
+    Json(Task::select_by_id(&id, &connection))
+}
+
+#[patch("/<id>", data="<data>")]
+fn update_task(id: i32, data: Json<ETask>,connection: db::Connection) -> Json<bool> {
+    Json(Task::update(&id,&data, &connection))
+}
+
+#[delete("/<id>")]
+fn delete_task(id: i32, connection: db::Connection) -> Json<bool> {
+    Json(Task::delete(&id, &connection))
 }
 
 fn rocket() -> rocket::Rocket {
     rocket::ignite()
     .manage(db::connect())
-    .mount("/", routes![create_task,get_tasks])
+    .mount("/task", routes![create_task,get_tasks,get_tasks_by_id,update_task,delete_task])
 }
 
 fn main(){
